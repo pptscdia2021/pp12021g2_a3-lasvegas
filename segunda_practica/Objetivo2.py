@@ -44,24 +44,24 @@ print(df)
 
 df.to_csv('exportacion.csv', index = False)
 
-print("------- Df ordenado de mayor a menor los valores -------------------")
+# Ordena el DF de en forma descendiente según el valor
+print("------- Df ordenado -------------------")
 dfOrderValor = df.sort_values('Valor',ascending=False)
 print(dfOrderValor)
 
+# Imprime los dos máximos y dos mínimos
 print("----- Los dos máximos valores son: -----")
-print(dfOrderValor['Valor'][8])
-print(dfOrderValor['Valor'][19])
+print(dfOrderValor[:2])
 
 print("----- Los dos mínimos valores son: -----")
-print(dfOrderValor['Valor'][20])
-print(dfOrderValor['Valor'][34])
+print(dfOrderValor[-2:])
 
-"""
+
 # Me imprime sólo el máximo y mínimo (no los dos)
 maximo = df.max()
 minimo = df.min()
 
-print("maximo-----------------")
+print("Máximo-----------------")
 print(maximo)
-print("minimo-----------------")
-print(minimo)"""
+print("Mínimo-----------------")
+print(minimo)
