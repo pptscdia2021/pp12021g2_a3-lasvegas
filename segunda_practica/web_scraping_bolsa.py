@@ -5,7 +5,7 @@ from datetime import datetime
 import pandas as pd
 
 
-def scraping(tabla):
+def scraping():
 
     url_page = 'https://www.bolsamadrid.es/esp/aspx/Mercados/Precios.aspx?indice=ESI100000000&punto=indice'
     page = requests.get(url_page).text 
@@ -25,14 +25,17 @@ def scraping(tabla):
         for celda in fila.find_all('td'):
             if nroCelda==0:
                 name=celda.text
-                print("Indice:", name)
+                # print("Indice:", name)
             if nroCelda==2:
                 price=celda.text
-                print("Valor:", price)
+                # print("Valor:", price)
             nroCelda=nroCelda+1
         if name != 'Indice':
             df = df.append({'Indice':name, 'Valor':price, 'Fecha': datetime.now()}, ignore_index=True)
-
-    print(df)
+    # print(df)
 
     df.to_csv('exportacion.csv', index = False)
+
+    return df
+
+scraping()
