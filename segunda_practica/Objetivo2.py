@@ -1,67 +1,28 @@
-#instalar primero pip finance
-# Importando librerias
-# Si es necesario: pip install BeautifulSoup
-# Si es necesario: pip install datetime
+import 
 
-from bs4.element import ProcessingInstruction
-import requests
-from bs4 import BeautifulSoup
-import csv
-from datetime import datetime
-import pandas as pd
+def maxYMin():
 
-url_page = 'https://www.bolsamadrid.es/esp/aspx/Mercados/Precios.aspx?indice=ESI100000000&punto=indice'
+    # Ordena el DF de en forma descendiente según el valor
+    print("------- Df ordenado -------------------")
+    dfOrderValor = df.sort_values('Valor',ascending=False)
+    print(dfOrderValor)
 
-page = requests.get(url_page).text 
-soup = BeautifulSoup(page, "lxml")
+    # Imprime los dos máximos y dos mínimos
+    print("----- Los dos máximos valores son: -----")
+    max = dfOrderValor[:2]
+    print(max)
 
-tabla = soup.find('table', attrs={'id': 'ctl00_Contenido_tblAcciones'})
+    print("----- Los dos mínimos valores son: -----")
+    min = dfOrderValor[-2:] 
+    print(min)
 
-print(tabla)
+    # Me imprime sólo el máximo y mínimo (no los dos)
+    maximo = df.max()
+    minimo = df.min()
 
-name="Indice"
-price="Valor"
-fecha= "Fecha"
-array = []
-df = pd.DataFrame(columns=['Indice', 'Valor', 'Fecha'])
-nroFila=0
+    print("Máximo-----------------")
+    print(maximo)
+    print("Mínimo-----------------")
+    print(minimo)
 
-for fila in tabla.find_all("tr"):
-    #for row in  tabla.find_all("td")::
-    nroCelda=0
-    for celda in fila.find_all('td'):
-        if nroCelda==0:
-            name=celda.text
-            print("Indice:", name)
-        if nroCelda==2:
-            price=celda.text
-            print("Valor:", price)
-        nroCelda=nroCelda+1
-    if name != 'Indice':
-        df = df.append({'Indice':name, 'Valor':price, 'Fecha': datetime.now()}, ignore_index=True)
-
-print(df)
-
-df.to_csv('exportacion.csv', index = False)
-
-# Ordena el DF de en forma descendiente según el valor
-print("------- Df ordenado -------------------")
-dfOrderValor = df.sort_values('Valor',ascending=False)
-print(dfOrderValor)
-
-# Imprime los dos máximos y dos mínimos
-print("----- Los dos máximos valores son: -----")
-print(dfOrderValor[:2])
-
-print("----- Los dos mínimos valores son: -----")
-print(dfOrderValor[-2:])
-
-
-# Me imprime sólo el máximo y mínimo (no los dos)
-maximo = df.max()
-minimo = df.min()
-
-print("Máximo-----------------")
-print(maximo)
-print("Mínimo-----------------")
-print(minimo)
+    return(max, min, maximo, minimo)
