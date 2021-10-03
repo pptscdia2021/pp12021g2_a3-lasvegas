@@ -1,6 +1,8 @@
-import 
+from web_scraping_bolsa import scraping
 
 def maxYMin():
+
+    df = scraping()
 
     # Ordena el DF de en forma descendiente según el valor
     print("------- Df ordenado -------------------")
@@ -25,4 +27,5 @@ def maxYMin():
     print("Mínimo-----------------")
     print(minimo)
 
-    return(max, min, maximo, minimo)
+maxYMin()
+ 
