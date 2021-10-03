@@ -4,12 +4,14 @@ import csv
 from datetime import datetime
 import pandas as pd
 
-url_page = 'https://www.bolsamadrid.es/esp/aspx/Mercados/Precios.aspx?indice=ESI100000000&punto=indice'
-page = requests.get(url_page).text 
-soup = BeautifulSoup(page, "lxml")
-tabla = soup.find('table', attrs={'id': 'ctl00_Contenido_tblAcciones'})
 
 def scraping(tabla):
+
+    url_page = 'https://www.bolsamadrid.es/esp/aspx/Mercados/Precios.aspx?indice=ESI100000000&punto=indice'
+    page = requests.get(url_page).text 
+    soup = BeautifulSoup(page, "lxml")
+    tabla = soup.find('table', attrs={'id': 'ctl00_Contenido_tblAcciones'})
+
     name="Indice"
     price="Valor"
     fecha= "Fecha"
