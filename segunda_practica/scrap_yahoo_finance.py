@@ -1,14 +1,24 @@
 import yfinance as yf
+import pandas as pd
 
-Amazon = yf.Ticker("IBEX")
-print(Amazon.info) 
+acciones = ["ANA.MC", "BBVA.MC", "GRF.MC", "ELE.MC","REP.MC"]
 
-print(Amazon.info['ask']) #Precio al que compro una acción
-print(Amazon.info['bid']) #Precio al que vendo una acción
+def scrapYahoo(acciones):
+    df_list = list()
 
-df = yf.download("IBEX", start="2021-09-03", end="2021-09-04",group_by="ticker") 
-print(df)
+    # i = 0
+    # while i < len(acciones):
+    #     a = yf.Ticker(acciones[i])
+    #     print(a.info['shortName'])
+    #     i = i+1
 
-ticker = yf.Ticker('IBEX')
-aapl_df = ticker.history(period="5y")
-aapl_df['Close'].plot(title="APPLE's stock price")
+    for ticker in acciones:
+        data = yf.download(ticker, group_by='ticker', period='1d')
+        data['ticker'] = ticker  
+        df_list.append(data)
+
+    df = pd.concat(df_list)
+    
+    df.to_csv('yahoo_finance.csv')
+    return df
+scrapYahoo(acciones)

@@ -5,27 +5,26 @@ def maxYMin():
     df = scraping()
 
     # Ordena el DF de en forma descendiente según el valor
-    print("------- Df ordenado -------------------")
+    # print("------- Df ordenado -------------------")
     dfOrderValor = df.sort_values('Valor',ascending=False)
-    print(dfOrderValor)
+    # print(dfOrderValor)
 
     # Imprime los dos máximos y dos mínimos
-    print("----- Los dos máximos valores son: -----")
+    # print("----- Los dos máximos valores son: -----")
     max = dfOrderValor[:2]
-    print(max)
+    # print(max)
 
-    print("----- Los dos mínimos valores son: -----")
+    # print("----- Los dos mínimos valores son: -----")
     min = dfOrderValor[-2:] 
-    print(min)
+    # print(min)
 
     # Me imprime sólo el máximo y mínimo (no los dos)
     maximo = df.max()
     minimo = df.min()
 
-    print("Máximo-----------------")
-    print(maximo)
-    print("Mínimo-----------------")
-    print(minimo)
+    # print("Máximo-----------------")
+    # print(maximo)
+    # print("Mínimo-----------------")
+    # print(minimo)
 
-maxYMin()
- 
+    return maximo, minimo
