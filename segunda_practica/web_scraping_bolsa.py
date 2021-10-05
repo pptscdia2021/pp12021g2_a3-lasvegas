@@ -48,4 +48,3 @@ def scraping():
 
     df.to_csv('exportacion.csv', index = False)
     return df
-scraping()
