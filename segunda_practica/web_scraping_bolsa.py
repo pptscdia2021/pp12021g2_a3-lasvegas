@@ -42,9 +42,9 @@ def scraping():
         page = requests.get(url_page).text 
         soup = BeautifulSoup(page, "lxml")
         ticker = soup.find('td', attrs={'id': 'ctl00_Contenido_TickerDat'}).text
-        df['Ticker'][i] = ticker
+        df['Ticker'][i] = re.sub(r"\s+", "", (ticker +'.MC'))
         df['URL'][i] = url_page
         i = i+1
-
+    
     df.to_csv('exportacion.csv', index = False)
     return df
