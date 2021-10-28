@@ -2,10 +2,13 @@ from web_scraping_bolsa import scraping
 from Objetivo2 import maxYMin
 from scrap_yahoo_finance import scrapYahoo
 from comparativa import comparativa
+from grafik import plotes
 
-accionesYahoo = ["ANA.MC", "BBVA.MC", "GRF.MC", "ELE.MC","REP.MC"]
 
 if __name__ == "__main__":
     df1 = scraping()
-    df2 = scrapYahoo(accionesYahoo)
-    comparativa(df1,df2)
+    df2 = scrapYahoo(df1['Ticker'])
+    print(df1)
+    print(df2)
+    #comparativa(df1)
+    plotes(df1)

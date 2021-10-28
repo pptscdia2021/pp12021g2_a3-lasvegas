@@ -1,19 +1,15 @@
 # Crear la función comparativa y check
-from matplotlib.lines import _LineStyle
 import matplotlib.pyplot as plt
+import yfinance as yf
 
-x = [2016, 2017, 2018, 2019, 2020, 2021]
-y = [45, 38, 47, 40, 44, 30]
-
-plt.plot(x,y, marker = 'o', linestyle = '--')
-plt.show()
-
-"""
-def comparativa(a,b):
-    print(a)
-    print(b)
-
-def grafik(a,b):
-    plt.plot(a,b)
-    plt.show()
-    """
+def comparativa(df):
+    ticker = df['Ticker']
+    #print(ticker)
+    i = 0
+    while i < int(len(ticker)):   
+        tic = yf.Ticker(ticker[i])
+        i = i + 1
+        aapl_df = tic.history(period="5y")
+        aapl_df['Close'].plot(title="APPLE's stock price")
+        plt.show()
+        
