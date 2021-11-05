@@ -1,7 +1,5 @@
-from matplotlib import ticker
 import matplotlib.pyplot as plt
 import yfinance as yf
-import numpy as np
 
 def plotes(df):
     tiko = df['Ticker']
