@@ -1,5 +1,4 @@
 import requests
-import csv
 import pandas as pd
 from bs4 import BeautifulSoup
 from datetime import datetime
